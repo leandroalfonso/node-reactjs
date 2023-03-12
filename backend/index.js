@@ -9,14 +9,14 @@ app.use(express.json());
 
 app.post('/dados',(req,res)=>{
   const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'bd_leilao'
+    host: 'db4free.net',
+    user: 'leandro_bd3',
+    password: 'Leandro171716',
+    database: 'leiloes'
   });
 
   connection.connect(() => {
-    connection.query('INSERT INTO leiloes (nome) VALUES (?)', [req.body.nome], (err,result) => {
+    connection.query('INSERT INTO leilao (nome,descricao) VALUES (?,?)', [req.body.nome,req.body.descricao], (err,result) => {
       if (err) {
         console.error('Erro ao executar consulta:', err);
       }else{
@@ -34,14 +34,14 @@ app.post('/dados',(req,res)=>{
 
 app.get('/dados',(req,res)=>{
     const connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'bd_leilao'
+      host: 'db4free.net',
+      user: 'leandro_bd3',
+      password: 'Leandro171716',
+      database: 'leiloes'
       });
       
       connection.connect(() => {
-        connection.query('SELECT * FROM leiloes', (err,result) => {
+        connection.query('SELECT * FROM leilao', (err,result) => {
           if (err) {
             console.error('Erro ao executar consulta:', err);
           }else{

@@ -7,10 +7,12 @@ import { Link } from "react-router-dom";
 
 function App() {
   const [count, setCount] = useState([]);
+ 
   const [entrada, setEntrada] = useState("");
+  const [entrada2, setEntrada2] = useState("");
 
 function add(){
-    api.post("dados", {nome: entrada}).then((res) => {
+    api.post("dados", {nome: entrada, descricao:entrada2}).then((res) => {
       setCount([...count, res.data]);
     });
 }
@@ -28,6 +30,12 @@ function add(){
           type="text"
           onChange={(e) => {
             setEntrada(e.target.value);
+          }}
+        />
+         <input
+          type="text"
+          onChange={(e) => {
+            setEntrada2(e.target.value);
           }}
         />
 <button onClick={add}>enviar</button>
